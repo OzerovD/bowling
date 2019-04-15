@@ -21,7 +21,17 @@ server.route({
     path:'/scores',
     handler: ( request, h ) => {
 
-        return'hello world';
+        try { 
+            let result = score.getScores()
+            if ( result.err ) {
+                return h.response( result.err ).code( 500 )
+            } else {
+                 return h.response(result).code( 200 )
+            }
+         } catch ( e ) {
+            return h.response( ).code( 500 )
+         }
+                        
     }
 });
 
@@ -39,7 +49,7 @@ server.route({
                 return h.response().code( 200 )
             }
         } catch ( e ) {
-            return h.response( ).code( 500 )
+            return h.response().code( 500 )
         }
     }
 });
@@ -51,7 +61,7 @@ server.route({
 
         let result = score.newGame()
         if(result.err) {
-            return h.response( result.err ).code( 500 ) 
+            return h.response().code( 500 ) 
         } else {
             return h.response().code( 204 )
         }
