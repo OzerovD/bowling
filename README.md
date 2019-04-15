@@ -1,2 +1,2 @@
-# bowling
-Test tast
+# Bowling
+Test task
