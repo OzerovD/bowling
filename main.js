@@ -3,6 +3,7 @@ const fs = require ( 'fs' )
 const Score = require ( './modules/score' )
 const argv = require ( 'optimist' ).argv
 
+const host = arg .host || argv.h || "localhost"
 const port = argv.port || argv.p || "2020"
 const dbFile = argv.file || argv.f || "score.json"
 
@@ -11,7 +12,7 @@ console.log(port, dbFile)
 const score = new Score ( dbFile )
 
 const server = hapi.server({
-            host:'localhost',
+            host:host,
             port:port
         });
 
