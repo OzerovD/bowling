@@ -42,30 +42,22 @@ class Score {
 
             let scores = this.getScores ()
             
-            if( !scores.err ) {
+            if( scores.err ) { return { err: scores.err } }
 
-                if ( scores.frames.length < 10 ) {
-                    if ( score.first !== "undefined" && score.second !== "undefined") {
+            if ( scores.frames.length = 10 ) { return { err: 'Game is over' } }
 
-                        if ( !scores.frames ) scores.frames = []
-                        scores.frames.push( score )
-                        scores.total = this.calcTotal(scores.frames)
+            if ( score.first === "undefined" || score.second === "undefined") { return { err: 'Not enough required parameters "first" or "second"' } }
+
+            if ( !scores.frames ) scores.frames = []
+            scores.frames.push( score )
+            scores.total = this.calcTotal(scores.frames)
                                         
-                        try {
-                            fs.writeFileSync ( this.scoreFilePath, JSON.stringify( scores, false, "\t" ) )
-                            return true
+            try {
+                fs.writeFileSync ( this.scoreFilePath, JSON.stringify( scores, false, "\t" ) )
+                return true
 
-                        } catch ( e ) {
-                            return { err: e }
-                        }
-                    } else {
-                        return { err: 'Not enough required parameters "first" or "second"' }
-                    }
-                } else { 
-                    return { err: 'Game is over' }
-                }
-            } else { 
-                return { err: scores.err }
+            } catch ( e ) {
+                return { err: e }
             }
 
         } catch ( e ) {
