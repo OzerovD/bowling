@@ -3,7 +3,7 @@ const fs = require ( 'fs' )
 const Score = require ( './modules/score' )
 const argv = require ( 'optimist' ).argv
 
-const host = arg .host || argv.h || "localhost"
+const host = argv.host || argv.h || "localhost"
 const port = argv.port || argv.p || "2020"
 const dbFile = argv.file || argv.f || "score.json"
 
