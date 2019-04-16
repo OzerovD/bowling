@@ -44,7 +44,7 @@ class Score {
             
             if( scores.err ) { return { err: scores.err } }
 
-            if ( scores.frames.length = 10 ) { return { err: 'Game is over' } }
+            if ( scores.frames.length === 10 ) { return { err: 'Game is over' } }
 
             if ( score.first === "undefined" || score.second === "undefined") { return { err: 'Not enough required parameters "first" or "second"' } }
 
